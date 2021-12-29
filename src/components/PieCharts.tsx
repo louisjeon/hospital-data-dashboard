@@ -1,3 +1,4 @@
+import { MinusIcon } from "@chakra-ui/icons";
 import { Box, Flex } from "@chakra-ui/react";
 import { Chart, ArcElement } from "chart.js";
 import { useEffect, useState } from "react";
@@ -14,6 +15,42 @@ export const PieCharts = ({ filteredPatients }) => {
     genderPlusRace: [],
     genderPlusEthnicity: [],
   });
+
+  const colors = {
+    gender: {
+      M: [54, 162, 235],
+      F: [255, 99, 132],
+    },
+    race: {
+      Asian: [255, 216, 87],
+      Black: [28, 22, 2],
+      Native: [92, 8, 8],
+      White: [255, 249, 219],
+      Other: [120, 117, 102],
+    },
+    ethnicity: {
+      NonHispanic: [91, 222, 84],
+      Hispanic: [166, 33, 108],
+    },
+    genderPlusRace: {
+      AsianM: [255, 0, 0],
+      AsianF: [255, 128, 128],
+      BlackM: [0, 255, 255],
+      BlackF: [128, 255, 255],
+      NativeM: "green",
+      NativeF: "darkgreen",
+      WhiteM: "violet",
+      WhiteF: "purple",
+      OtherM: "teal",
+      OtherF: "black",
+    },
+    genderPlusEthnicity: {
+      NonHispanicM: "teal",
+      NonHispanicF: "crimson",
+      HispanicM: "salmon",
+      HispanicF: "tan",
+    },
+  };
 
   useEffect(() => {
     const tmpData = {
@@ -94,6 +131,22 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box fontSize="20px" textAlign="center">
           By Gender
         </Box>
+        <Flex flexDir="column">
+          <Flex margin="auto">
+            <MinusIcon
+              color={`rgb(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]})`}
+              background={`rgb(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]})`}
+            />{" "}
+            Male
+          </Flex>
+          <Flex margin="auto">
+            <MinusIcon
+              color={`rgb(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]})`}
+              background={`rgb(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]})`}
+            />{" "}
+            Female
+          </Flex>
+        </Flex>
         <Pie
           className="genderPieChart"
           height={graphHeight}
@@ -104,10 +157,13 @@ export const PieCharts = ({ filteredPatients }) => {
                 label: "# of Votes",
                 data: chartData.gender,
                 backgroundColor: [
-                  "rgba(54, 162, 235, 0.2)",
-                  "rgba(255, 99, 132, 0.2)",
+                  `rgba(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]}, 0.2)`,
+                  `rgba(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]}, 0.2)`,
                 ],
-                borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
+                borderColor: [
+                  `rgb(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]})`,
+                  `rgb(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]})`,
+                ],
                 borderWidth: 5,
               },
             ],
@@ -121,6 +177,43 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box fontSize="20px" textAlign="center">
           By Race
         </Box>
+        <Flex flexDir="column">
+          <Flex margin="auto">
+            <MinusIcon
+              color={colors.race.Asian}
+              background={colors.race.Asian}
+            />{" "}
+            Asian
+          </Flex>
+          <Flex margin="auto">
+            <MinusIcon
+              color={colors.race.Black}
+              background={colors.race.Black}
+            />{" "}
+            Black
+          </Flex>
+          <Flex margin="auto">
+            <MinusIcon
+              color={colors.race.Native}
+              background={colors.race.Native}
+            />{" "}
+            Native
+          </Flex>
+          <Flex margin="auto">
+            <MinusIcon
+              color={colors.race.White}
+              background={colors.race.White}
+            />{" "}
+            White
+          </Flex>
+          <Flex margin="auto">
+            <MinusIcon
+              color={colors.race.Other}
+              background={colors.race.Other}
+            />{" "}
+            Other
+          </Flex>
+        </Flex>
         <Pie
           className="racePieChart"
           height={graphHeight}
@@ -132,13 +225,19 @@ export const PieCharts = ({ filteredPatients }) => {
                 label: "# of Votes",
                 data: chartData.race,
                 backgroundColor: [
-                  "yellow",
-                  "black",
-                  "darkred",
-                  "white",
-                  "green",
+                  colors.race.Asian,
+                  colors.race.Black,
+                  colors.race.Native,
+                  colors.race.White,
+                  colors.race.Other,
                 ],
-                borderColor: ["yellow", "black", "darkred", "white", "green"],
+                borderColor: [
+                  colors.race.Asian,
+                  colors.race.Black,
+                  colors.race.Native,
+                  colors.race.White,
+                  colors.race.Other,
+                ],
                 borderWidth: 5,
               },
             ],
@@ -161,6 +260,14 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box fontSize="20px" textAlign="center">
           By Ethnicity
         </Box>
+        <Flex flexDir="column">
+          <Flex margin="auto">
+            <MinusIcon color="yellow" background="yellow" /> Hispanic
+          </Flex>
+          <Flex margin="auto">
+            <MinusIcon color="white" background="white" /> Non Hispanic
+          </Flex>
+        </Flex>
         <Pie
           className="ethnicityPieChart"
           height={graphHeight}
