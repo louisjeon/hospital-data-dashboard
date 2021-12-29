@@ -1,10 +1,8 @@
 # 🏥 Hospital Dashboard
 
-This example features how to make a healthcare dashboard with Next JS, Typescript and Chakra UI.
+- Next JS와 Typescript, Chakra UI를 이용하여 만든 환자 정보 대쉬보드입니다.
 
 ## 구현 내용 설명
-
-- Next JS와 Typescript, Chakra UI를 이용하여 만든 환자 정보 대쉬보드입니다.
 
 - 처음 PatientsTable 컴포넌트가 마운트 될 때 데이터를 받아와 allPatients, filteredPatients에 담아두고 최대 앞의 20항목을 잘라 patients에 담아둡니다. allPatients는 받아온 데이터 전체를 담아두어 필터조건이 변경될 때마다 사용하기 위한 용도이고 filteredPatients는 지금 필터처리가 되어 렌더할 환자 목록을 나타냅니다.
 
