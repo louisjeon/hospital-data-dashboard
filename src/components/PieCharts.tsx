@@ -6,6 +6,8 @@ import { Pie } from "react-chartjs-2";
 
 Chart.register(ArcElement);
 const graphHeight = 140;
+const graphMarginTop = "0px";
+const graphBoxHeight = "140px";
 
 export const PieCharts = ({ filteredPatients }) => {
   const [chartData, setChartData] = useState({
@@ -37,18 +39,18 @@ export const PieCharts = ({ filteredPatients }) => {
       AsianF: [255, 128, 128],
       BlackM: [0, 255, 255],
       BlackF: [128, 255, 255],
-      NativeM: "green",
-      NativeF: "darkgreen",
-      WhiteM: "violet",
-      WhiteF: "purple",
-      OtherM: "teal",
-      OtherF: "black",
+      NativeM: [144, 0, 255],
+      NativeF: [202, 133, 255],
+      WhiteM: [0, 255, 21],
+      WhiteF: [135, 255, 21],
+      OtherM: [255, 0, 208],
+      OtherF: [255, 130, 232],
     },
     genderPlusEthnicity: {
-      NonHispanicM: "teal",
-      NonHispanicF: "crimson",
-      HispanicM: "salmon",
-      HispanicF: "tan",
+      NonHispanicM: [20, 168, 146],
+      NonHispanicF: [181, 33, 60],
+      HispanicM: [156, 67, 40],
+      HispanicF: [184, 170, 119],
     },
   };
 
@@ -69,26 +71,33 @@ export const PieCharts = ({ filteredPatients }) => {
             case "asian":
               tmpData.race[0]++;
               tmpData.genderPlusRace[0]++;
+              break;
             case "black":
               tmpData.race[1]++;
               tmpData.genderPlusRace[1]++;
+              break;
             case "native":
               tmpData.race[2]++;
               tmpData.genderPlusRace[2]++;
+              break;
             case "white":
               tmpData.race[3]++;
               tmpData.genderPlusRace[3]++;
+              break;
             case "other":
               tmpData.race[4]++;
               tmpData.genderPlusRace[4]++;
+              break;
           }
           switch (patient.ethnicity) {
             case "nonhispanic":
               tmpData.ethnicity[0]++;
               tmpData.genderPlusEthnicity[0]++;
+              break;
             case "hispanic":
               tmpData.ethnicity[1]++;
               tmpData.genderPlusEthnicity[1]++;
+              break;
           }
           break;
         case "F":
@@ -97,26 +106,33 @@ export const PieCharts = ({ filteredPatients }) => {
             case "asian":
               tmpData.race[0]++;
               tmpData.genderPlusRace[5]++;
+              break;
             case "black":
               tmpData.race[1]++;
               tmpData.genderPlusRace[6]++;
+              break;
             case "native":
               tmpData.race[2]++;
               tmpData.genderPlusRace[7]++;
+              break;
             case "white":
               tmpData.race[3]++;
               tmpData.genderPlusRace[8]++;
+              break;
             case "other":
               tmpData.race[4]++;
               tmpData.genderPlusRace[9]++;
+              break;
           }
           switch (patient.ethnicity) {
             case "nonhispanic":
               tmpData.ethnicity[0]++;
               tmpData.genderPlusEthnicity[2]++;
+              break;
             case "hispanic":
               tmpData.ethnicity[1]++;
               tmpData.genderPlusEthnicity[3]++;
+              break;
           }
           break;
       }
@@ -125,239 +141,437 @@ export const PieCharts = ({ filteredPatients }) => {
     setChartData({ ...tmpData });
   }, [filteredPatients]);
 
+  const getRGB = (target) => {
+    return `rgb(${target[0]}, ${target[1]}, ${target[2]})`;
+  };
+
+  const getRGBA = (target) => {
+    return `rgba(${target[0]}, ${target[1]}, ${target[2]}, 0.2)`;
+  };
+
   return (
-    <Flex>
-      <Box>
-        <Box fontSize="20px" textAlign="center">
-          By Gender
+    <Flex flexDirection="column">
+      <Flex w="100%">
+        <Box
+          border="1px solid crimson"
+          borderRadius="5px"
+          boxSizing="border-box"
+          w="20%"
+        >
+          <Box
+            fontSize="16px"
+            textAlign="center"
+            mb="20px"
+            color="crimson"
+            border="1px solid crimson"
+            borderRadius="5px"
+          >
+            By Gender
+          </Box>
+          <Flex flexDir="column">
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.gender.M)}
+                background={getRGB(colors.gender.M)}
+              />{" "}
+              Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.gender.F)}
+                background={getRGB(colors.gender.F)}
+              />{" "}
+              Female
+            </Flex>
+          </Flex>
         </Box>
-        <Flex flexDir="column">
-          <Flex margin="auto">
-            <MinusIcon
-              color={`rgb(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]})`}
-              background={`rgb(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]})`}
-            />{" "}
-            Male
+        <Box
+          border="1px solid crimson"
+          borderRadius="5px"
+          boxSizing="border-box"
+          w="20%"
+        >
+          <Box
+            fontSize="16px"
+            textAlign="center"
+            mb="20px"
+            color="crimson"
+            border="1px solid crimson"
+            borderRadius="5px"
+          >
+            By Race
+          </Box>
+          <Flex flexDir="column">
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.race.Asian)}
+                background={getRGB(colors.race.Asian)}
+              />{" "}
+              Asian
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.race.Black)}
+                background={getRGB(colors.race.Black)}
+              />{" "}
+              Black
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.race.Native)}
+                background={getRGB(colors.race.Native)}
+              />{" "}
+              Native
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.race.White)}
+                background={getRGB(colors.race.White)}
+              />{" "}
+              White
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.race.Other)}
+                background={getRGB(colors.race.Other)}
+              />{" "}
+              Other
+            </Flex>
           </Flex>
-          <Flex margin="auto">
-            <MinusIcon
-              color={`rgb(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]})`}
-              background={`rgb(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]})`}
-            />{" "}
-            Female
-          </Flex>
-        </Flex>
-        <Pie
-          className="genderPieChart"
-          height={graphHeight}
-          width={graphHeight}
-          data={{
-            datasets: [
-              {
-                label: "# of Votes",
-                data: chartData.gender,
-                backgroundColor: [
-                  `rgba(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]}, 0.2)`,
-                  `rgba(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]}, 0.2)`,
-                ],
-                borderColor: [
-                  `rgb(${colors.gender.M[0]}, ${colors.gender.M[1]}, ${colors.gender.M[2]})`,
-                  `rgb(${colors.gender.F[0]}, ${colors.gender.F[1]}, ${colors.gender.F[2]})`,
-                ],
-                borderWidth: 5,
-              },
-            ],
-          }}
-          options={{
-            maintainAspectRatio: false,
-          }}
-        />
-      </Box>
-      <Box>
-        <Box fontSize="20px" textAlign="center">
-          By Race
         </Box>
-        <Flex flexDir="column">
-          <Flex margin="auto">
-            <MinusIcon
-              color={colors.race.Asian}
-              background={colors.race.Asian}
-            />{" "}
-            Asian
+        <Box
+          border="1px solid crimson"
+          borderRadius="5px"
+          boxSizing="border-box"
+          w="20%"
+        >
+          <Box
+            fontSize="16px"
+            textAlign="center"
+            mb="20px"
+            color="crimson"
+            border="1px solid crimson"
+            borderRadius="5px"
+          >
+            By Ethnicity
+          </Box>
+          <Flex flexDir="column">
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.ethnicity.Hispanic)}
+                background={getRGB(colors.ethnicity.Hispanic)}
+              />{" "}
+              Hispanic
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.ethnicity.NonHispanic)}
+                background={getRGB(colors.ethnicity.NonHispanic)}
+              />{" "}
+              Non Hispanic
+            </Flex>
           </Flex>
-          <Flex margin="auto">
-            <MinusIcon
-              color={colors.race.Black}
-              background={colors.race.Black}
-            />{" "}
-            Black
-          </Flex>
-          <Flex margin="auto">
-            <MinusIcon
-              color={colors.race.Native}
-              background={colors.race.Native}
-            />{" "}
-            Native
-          </Flex>
-          <Flex margin="auto">
-            <MinusIcon
-              color={colors.race.White}
-              background={colors.race.White}
-            />{" "}
-            White
-          </Flex>
-          <Flex margin="auto">
-            <MinusIcon
-              color={colors.race.Other}
-              background={colors.race.Other}
-            />{" "}
-            Other
-          </Flex>
-        </Flex>
-        <Pie
-          className="racePieChart"
-          height={graphHeight}
-          width={graphHeight}
-          data={{
-            labels: ["A", "B", "C", "D", "E"],
-            datasets: [
-              {
-                label: "# of Votes",
-                data: chartData.race,
-                backgroundColor: [
-                  colors.race.Asian,
-                  colors.race.Black,
-                  colors.race.Native,
-                  colors.race.White,
-                  colors.race.Other,
-                ],
-                borderColor: [
-                  colors.race.Asian,
-                  colors.race.Black,
-                  colors.race.Native,
-                  colors.race.White,
-                  colors.race.Other,
-                ],
-                borderWidth: 5,
-              },
-            ],
-          }}
-          options={{
-            maintainAspectRatio: false,
-            plugins: {
-              tooltip: {
-                enabled: true,
-              },
-              legend: {
-                position: "top",
-                display: true,
-              },
-            },
-          }}
-        />
-      </Box>
-      <Box>
-        <Box fontSize="20px" textAlign="center">
-          By Ethnicity
         </Box>
-        <Flex flexDir="column">
-          <Flex margin="auto">
-            <MinusIcon color="yellow" background="yellow" /> Hispanic
+        <Box
+          border="1px solid crimson"
+          borderRadius="5px"
+          boxSizing="border-box"
+          w="20%"
+        >
+          <Box
+            fontSize="16px"
+            textAlign="center"
+            mb="20px"
+            color="crimson"
+            border="1px solid crimson"
+            borderRadius="5px"
+          >
+            By Gender And Race
+          </Box>
+          <Flex flexDir="column">
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.AsianM)}
+                background={getRGB(colors.genderPlusRace.AsianM)}
+              />{" "}
+              Asian Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.AsianF)}
+                background={getRGB(colors.genderPlusRace.AsianF)}
+              />{" "}
+              Asian Female
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.BlackM)}
+                background={getRGB(colors.genderPlusRace.BlackM)}
+              />{" "}
+              Black Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.BlackF)}
+                background={getRGB(colors.genderPlusRace.BlackF)}
+              />{" "}
+              Black Female
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.NativeM)}
+                background={getRGB(colors.genderPlusRace.NativeM)}
+              />{" "}
+              Native Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.NativeF)}
+                background={getRGB(colors.genderPlusRace.NativeF)}
+              />{" "}
+              Native Female
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.WhiteM)}
+                background={getRGB(colors.genderPlusRace.WhiteM)}
+              />{" "}
+              White Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.WhiteF)}
+                background={getRGB(colors.genderPlusRace.WhiteF)}
+              />{" "}
+              White Female
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.OtherM)}
+                background={getRGB(colors.genderPlusRace.OtherM)}
+              />{" "}
+              Other Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusRace.OtherF)}
+                background={getRGB(colors.genderPlusRace.OtherF)}
+              />{" "}
+              Other Female
+            </Flex>
           </Flex>
-          <Flex margin="auto">
-            <MinusIcon color="white" background="white" /> Non Hispanic
+        </Box>
+        <Box
+          border="1px solid crimson"
+          borderRadius="5px"
+          boxSizing="border-box"
+          w="20%"
+        >
+          <Box
+            fontSize="16px"
+            textAlign="center"
+            mb="20px"
+            color="crimson"
+            border="1px solid crimson"
+            borderRadius="5px"
+          >
+            By Gender And Ethnicity
+          </Box>
+          <Flex flexDir="column">
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusEthnicity.HispanicM)}
+                background={getRGB(colors.genderPlusEthnicity.HispanicM)}
+              />{" "}
+              Hispanic Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusEthnicity.HispanicF)}
+                background={getRGB(colors.genderPlusEthnicity.HispanicF)}
+              />{" "}
+              Hispanic Female
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusEthnicity.NonHispanicM)}
+                background={getRGB(colors.genderPlusEthnicity.NonHispanicM)}
+              />{" "}
+              Non Hispanic Male
+            </Flex>
+            <Flex margin="auto">
+              <MinusIcon
+                color={getRGB(colors.genderPlusEthnicity.NonHispanicF)}
+                background={getRGB(colors.genderPlusEthnicity.NonHispanicF)}
+              />{" "}
+              Non Hispanic Female
+            </Flex>
           </Flex>
-        </Flex>
-        <Pie
-          className="ethnicityPieChart"
-          height={graphHeight}
-          width={graphHeight}
-          data={{
-            datasets: [
-              {
-                label: "# of Votes",
-                data: chartData.ethnicity,
-                backgroundColor: ["ivory", "gold"],
-                borderColor: ["ivory", "gold"],
-                borderWidth: 5,
-              },
-            ],
-          }}
-          options={{
-            maintainAspectRatio: false,
-          }}
-        />
-      </Box>
-      <Box>
-        <Box fontSize="20px" textAlign="center">
-          By Gender
         </Box>
-        <Pie
-          className="genderPlusRacePieChart"
-          height={graphHeight}
-          width={graphHeight}
-          data={{
-            datasets: [
-              {
-                label: "# of Votes",
-                data: chartData.genderPlusRace,
-                backgroundColor: [
-                  "red",
-                  "orange",
-                  "yellow",
-                  "green",
-                  "blue",
-                  "pink",
-                  "purple",
-                  "yellowgreen",
-                  "brown",
-                  "black",
-                ],
-                borderColor: [
-                  "red",
-                  "orange",
-                  "yellow",
-                  "green",
-                  "blue",
-                  "pink",
-                  "purple",
-                  "yellowgreen",
-                  "brown",
-                  "black",
-                ],
-                borderWidth: 5,
-              },
-            ],
-          }}
-          options={{
-            maintainAspectRatio: false,
-          }}
-        />
-      </Box>
-      <Box>
-        <Box fontSize="20px" textAlign="center">
-          By Gender
+      </Flex>
+      <Flex border="1px solid crimson" boxSizing="border-box">
+        {" "}
+        <Box
+          border="1px solid crimson"
+          boxSizing="border-box"
+          height={graphBoxHeight}
+        >
+          <Pie
+            className="genderPieChart"
+            height={graphHeight}
+            width={graphHeight}
+            style={{ marginTop: graphMarginTop }}
+            data={{
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: chartData.gender,
+                  backgroundColor: Object.values(colors.gender).map((item) =>
+                    getRGBA(item)
+                  ),
+                  borderColor: Object.values(colors.gender).map((item) =>
+                    getRGB(item)
+                  ),
+                  borderWidth: 5,
+                },
+              ],
+            }}
+            options={{
+              maintainAspectRatio: false,
+            }}
+          />
         </Box>
-        <Pie
-          className="genderPlusEthnicityPieCharte"
-          height={graphHeight}
-          width={graphHeight}
-          data={{
-            datasets: [
-              {
-                label: "# of Votes",
-                data: chartData.genderPlusEthnicity,
-                backgroundColor: ["teal", "coral", "tan", "violet"],
-                borderColor: ["teal", "coral", "tan", "violet"],
-                borderWidth: 5,
+        <Box
+          border="1px solid crimson"
+          boxSizing="border-box"
+          height={graphBoxHeight}
+        >
+          <Pie
+            className="racePieChart"
+            height={graphHeight}
+            width={graphHeight}
+            style={{ marginTop: graphMarginTop }}
+            data={{
+              labels: ["A", "B", "C", "D", "E"],
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: chartData.race,
+                  backgroundColor: Object.values(colors.race).map((item) =>
+                    getRGBA(item)
+                  ),
+                  borderColor: Object.values(colors.race).map((item) =>
+                    getRGB(item)
+                  ),
+                  borderWidth: 5,
+                },
+              ],
+            }}
+            options={{
+              maintainAspectRatio: false,
+              plugins: {
+                tooltip: {
+                  enabled: true,
+                },
+                legend: {
+                  position: "top",
+                  display: true,
+                },
               },
-            ],
-          }}
-          options={{
-            maintainAspectRatio: false,
-          }}
-        />
-      </Box>
+            }}
+          />
+        </Box>
+        <Box
+          border="1px solid crimson"
+          boxSizing="border-box"
+          height={graphBoxHeight}
+        >
+          <Pie
+            className="ethnicityPieChart"
+            height={graphHeight}
+            width={graphHeight}
+            style={{ marginTop: graphMarginTop }}
+            data={{
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: chartData.ethnicity,
+                  backgroundColor: Object.values(colors.ethnicity).map((item) =>
+                    getRGBA(item)
+                  ),
+                  borderColor: Object.values(colors.ethnicity).map((item) =>
+                    getRGB(item)
+                  ),
+                  borderWidth: 5,
+                },
+              ],
+            }}
+            options={{
+              maintainAspectRatio: false,
+            }}
+          />
+        </Box>
+        <Box
+          border="1px solid crimson"
+          boxSizing="border-box"
+          height={graphBoxHeight}
+        >
+          <Pie
+            className="genderPlusRacePieChart"
+            height={graphHeight}
+            width={graphHeight}
+            style={{ marginTop: graphMarginTop }}
+            data={{
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: chartData.genderPlusRace,
+                  backgroundColor: Object.values(colors.genderPlusRace).map(
+                    (item) => getRGBA(item)
+                  ),
+                  borderColor: Object.values(colors.genderPlusRace).map(
+                    (item) => getRGB(item)
+                  ),
+                  borderWidth: 5,
+                },
+              ],
+            }}
+            options={{
+              maintainAspectRatio: false,
+            }}
+          />
+        </Box>
+        <Box
+          border="1px solid crimson"
+          boxSizing="border-box"
+          height={graphBoxHeight}
+        >
+          <Pie
+            className="genderPlusEthnicityPieCharte"
+            height={graphHeight}
+            width={graphHeight}
+            style={{ marginTop: graphMarginTop }}
+            data={{
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: chartData.genderPlusEthnicity,
+                  backgroundColor: Object.values(
+                    colors.genderPlusEthnicity
+                  ).map((item) => getRGBA(item)),
+                  borderColor: Object.values(colors.genderPlusEthnicity).map(
+                    (item) => getRGB(item)
+                  ),
+                  borderWidth: 5,
+                },
+              ],
+            }}
+            options={{
+              maintainAspectRatio: false,
+            }}
+          />
+        </Box>
+      </Flex>
     </Flex>
   );
 };

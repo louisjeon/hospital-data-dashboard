@@ -157,7 +157,7 @@ export const PatientsTable = () => {
 
   return (
     <Main>
-      <Flex h="200px" overflow="hidden" justifyContent="space-around">
+      <Flex overflow="hidden" justifyContent="space-around">
         <PieCharts filteredPatients={filteredPatients} />
       </Flex>
       <Options
