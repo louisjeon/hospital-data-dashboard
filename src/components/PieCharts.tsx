@@ -74,19 +74,19 @@ export const PieCharts = ({ filteredPatients }) => {
               break;
             case "black":
               tmpData.race[1]++;
-              tmpData.genderPlusRace[1]++;
+              tmpData.genderPlusRace[2]++;
               break;
             case "native":
               tmpData.race[2]++;
-              tmpData.genderPlusRace[2]++;
+              tmpData.genderPlusRace[4]++;
               break;
             case "white":
               tmpData.race[3]++;
-              tmpData.genderPlusRace[3]++;
+              tmpData.genderPlusRace[6]++;
               break;
             case "other":
               tmpData.race[4]++;
-              tmpData.genderPlusRace[4]++;
+              tmpData.genderPlusRace[8]++;
               break;
           }
           switch (patient.ethnicity) {
@@ -96,7 +96,7 @@ export const PieCharts = ({ filteredPatients }) => {
               break;
             case "hispanic":
               tmpData.ethnicity[1]++;
-              tmpData.genderPlusEthnicity[1]++;
+              tmpData.genderPlusEthnicity[2]++;
               break;
           }
           break;
@@ -105,19 +105,19 @@ export const PieCharts = ({ filteredPatients }) => {
           switch (patient.race) {
             case "asian":
               tmpData.race[0]++;
-              tmpData.genderPlusRace[5]++;
+              tmpData.genderPlusRace[1]++;
               break;
             case "black":
               tmpData.race[1]++;
-              tmpData.genderPlusRace[6]++;
+              tmpData.genderPlusRace[3]++;
               break;
             case "native":
               tmpData.race[2]++;
-              tmpData.genderPlusRace[7]++;
+              tmpData.genderPlusRace[5]++;
               break;
             case "white":
               tmpData.race[3]++;
-              tmpData.genderPlusRace[8]++;
+              tmpData.genderPlusRace[7]++;
               break;
             case "other":
               tmpData.race[4]++;
@@ -127,7 +127,7 @@ export const PieCharts = ({ filteredPatients }) => {
           switch (patient.ethnicity) {
             case "nonhispanic":
               tmpData.ethnicity[0]++;
-              tmpData.genderPlusEthnicity[2]++;
+              tmpData.genderPlusEthnicity[1]++;
               break;
             case "hispanic":
               tmpData.ethnicity[1]++;
@@ -161,7 +161,7 @@ export const PieCharts = ({ filteredPatients }) => {
           <Box
             fontSize="16px"
             textAlign="center"
-            mb="20px"
+            mb="10px"
             color="crimson"
             border="1px solid crimson"
             borderRadius="5px"
@@ -194,7 +194,7 @@ export const PieCharts = ({ filteredPatients }) => {
           <Box
             fontSize="16px"
             textAlign="center"
-            mb="20px"
+            mb="10px"
             color="crimson"
             border="1px solid crimson"
             borderRadius="5px"
@@ -248,7 +248,7 @@ export const PieCharts = ({ filteredPatients }) => {
           <Box
             fontSize="16px"
             textAlign="center"
-            mb="20px"
+            mb="10px"
             color="crimson"
             border="1px solid crimson"
             borderRadius="5px"
@@ -281,7 +281,7 @@ export const PieCharts = ({ filteredPatients }) => {
           <Box
             fontSize="16px"
             textAlign="center"
-            mb="20px"
+            mb="10px"
             color="crimson"
             border="1px solid crimson"
             borderRadius="5px"
@@ -370,7 +370,7 @@ export const PieCharts = ({ filteredPatients }) => {
           <Box
             fontSize="16px"
             textAlign="center"
-            mb="20px"
+            mb="10px"
             color="crimson"
             border="1px solid crimson"
             borderRadius="5px"
@@ -409,12 +409,17 @@ export const PieCharts = ({ filteredPatients }) => {
           </Flex>
         </Box>
       </Flex>
-      <Flex border="1px solid crimson" boxSizing="border-box">
+      <Flex
+        border="1px solid crimson"
+        boxSizing="border-box"
+        borderRadius="5px"
+      >
         {" "}
         <Box
           border="1px solid crimson"
           boxSizing="border-box"
           height={graphBoxHeight}
+          borderRadius="5px"
         >
           <Pie
             className="genderPieChart"
@@ -444,6 +449,7 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box
           border="1px solid crimson"
           boxSizing="border-box"
+          borderRadius="5px"
           height={graphBoxHeight}
         >
           <Pie
@@ -484,6 +490,7 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box
           border="1px solid crimson"
           boxSizing="border-box"
+          borderRadius="5px"
           height={graphBoxHeight}
         >
           <Pie
@@ -514,6 +521,7 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box
           border="1px solid crimson"
           boxSizing="border-box"
+          borderRadius="5px"
           height={graphBoxHeight}
         >
           <Pie
@@ -544,6 +552,7 @@ export const PieCharts = ({ filteredPatients }) => {
         <Box
           border="1px solid crimson"
           boxSizing="border-box"
+          borderRadius="5px"
           height={graphBoxHeight}
         >
           <Pie

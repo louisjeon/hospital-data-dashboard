@@ -83,13 +83,10 @@ export const PatientItem = ({ patient }) => {
           border={race !== "Race" && "1px solid gray"}
           padding="0 3px"
           borderRadius="3px"
-          color={
-            (race === "black" || race === "native" || race === "asian") &&
-            "white"
-          }
+          color={(race === "black" || race === "native") && "white"}
           background={
             race === "asian"
-              ? "tan"
+              ? "yellow"
               : race === "black"
               ? "black"
               : race === "native"

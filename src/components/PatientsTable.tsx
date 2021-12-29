@@ -169,6 +169,9 @@ export const PatientsTable = () => {
       />
       <List spacing={3} my={0}>
         <PatientItem patient={demo} />
+        {filteredPatients.length === 0 && (
+          <Box>No result for the search condition.</Box>
+        )}
         {patients.map((patient) => {
           return (
             <PatientItem key={patient.personID.toString()} patient={patient} />
