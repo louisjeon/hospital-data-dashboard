@@ -18,10 +18,12 @@ Next JS와 Typescript, Chakra UI를 이용하여 만든 환자 정보 대쉬보�
 
 `yarn` 명령어를 통해 패키지들을 다운받은 후,
 
-`yarn dev` 명령어를 통해 로컬 서버에서 실행이 가능합니다.
+`yarn dev` 명령어를 통해 로컬 서버에 띄웁니다.
 
 ```bash
 yarn
 
 yarn dev
 ```
+
+이제 로컬 서버로 접속하기만 하면 프로젝트 확인이 가능합니다.
